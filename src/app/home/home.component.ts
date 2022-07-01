@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit {
   }
   public listManufacturer: string= '';
 
+  public tokenApify: string = '';
+
   constructor(public apifyAllService: ApifyAllService) {
     this.validationCrawler = {
       Manufacturer: "",
@@ -126,7 +128,7 @@ export class HomeComponent implements OnInit {
       SkipPrice: false,
       SkipStock: false
     }
-    this.apifyAllService.getComparationApify(body).subscribe(value => {
+    this.apifyAllService.getComparationApify(this.tokenApify, body).subscribe(value => {
       console.log(value.data)
       //https://console.apify.com/organization/GTLDwzJnfTMQqgBR4/actors/tasks/NwQud5cBCWmVeodrf/runs/tRXLHXhdaCwsGzj5c
       this.urlComparationApify = 'https://console.apify.com/organization/' + value.data.userId + '/actors/tasks/' + value.data.actorTaskId + '/runs/' + value.data.id;
@@ -212,7 +214,7 @@ export class HomeComponent implements OnInit {
       "CheckMappingCodes": true,
       "CultureCode": "DK"
     }
-    this.apifyAllService.getValidationApifyQA(body).subscribe(value => {
+    this.apifyAllService.getValidationApifyQA(this.tokenApify, body).subscribe(value => {
       console.log(value.data)
       this.urlValidation = 'https://console.apify.com/organization/'+ value.data.userId+'/actors/tasks/'+value.data.actorTaskId+'/runs/'+value.data.id+'#log'
       //this.urlComparationApify = 'https://console.apify.com/organization/' + value.data.userId + '/actors/tasks/' + value.data.actorTaskId + '/runs/' + value.data.id;

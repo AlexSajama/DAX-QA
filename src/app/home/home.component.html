@@ -14,6 +14,14 @@
       </div>
       <div class="row">
         <ul class="list-group">
+          <button type="button" class="list-group-item list-group-item-action active bg-warning" aria-current="true">
+            <label for="" style="color: black;">
+            Token Api of Apify
+          </label>
+          </button>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="text" class="form-control" [(ngModel)]="tokenApify" name="token">
+        </li>
           <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
             Total Values
           </button>
@@ -98,8 +106,11 @@
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
                   <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div> -->
-                <button type="submit" class="btn btn-primary"
+                <button type="submit" class="btn btn-primary" [disabled]="!tokenApify"
                   (click)="getUrlComparation(idCrawler, idUpdater)">Comparar</button>
+                  <div  *ngIf="!tokenApify" class="alert alert-danger" role="alert">
+                    Falta el token
+                  </div>
               </form>
               <a *ngIf="urlComparationApify" [href]="urlComparationApify">{{urlComparationApify}}</a>
             </div>
@@ -146,8 +157,11 @@
                   <label for="Stock" class="form-label">Stock</label>
                   <input type="text" class="form-control" [(ngModel)]="validationCrawler.Stock" name="Stock">
                 </div>
-                <button type="submit" class="btn btn-primary"
+                <button type="submit" class="btn btn-primary" [disabled]="!tokenApify"
                   (click)="getValidationCrawler(validationCrawler)">Validar</button>
+                  <div  *ngIf="!tokenApify" class="alert alert-danger" role="alert">
+                    Falta el token
+                  </div>
               </form>
               <a *ngIf="urlValidation" [href]="urlValidation">{{urlValidation}}</a>
             </div>
