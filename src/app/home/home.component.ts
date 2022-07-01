@@ -19,9 +19,11 @@ export class HomeComponent implements OnInit {
   public updater = new Product();
   public listCrawler = Array<Product>();
   public listCrawlerHandled = Array<ProductHandled>();
-  public productApiUrls: String = ''//Array<ProductUrlApi>();
+  public productApiUrls: string = ''//Array<ProductUrlApi>();
 
   public urlComparation: string = '';
+  public urlRunUpdater: string = '';
+  public urlApiUpdater: string = '';
 
   public productNameDoubleSpace = Array<Product>();
   public productPriceInvalid: boolean = false;
@@ -218,6 +220,18 @@ export class HomeComponent implements OnInit {
       console.log(value.data)
       this.urlValidation = 'https://console.apify.com/organization/'+ value.data.userId+'/actors/tasks/'+value.data.actorTaskId+'/runs/'+value.data.id+'#log'
       //this.urlComparationApify = 'https://console.apify.com/organization/' + value.data.userId + '/actors/tasks/' + value.data.actorTaskId + '/runs/' + value.data.id;
+    })
+  }
+
+  runUpdater(){
+    //let urlApiRobot = 'https://api.apify.com/v2/actor-tasks/cs_qa_salamanca~ae-firstcry-ppur-cheerio/runs?token=axzM27TTnyH9zswKmJpWxsZWr'
+    let body = {
+      startUrls: JSON.parse(this.productApiUrls)
+    }
+    this.apifyAllService.runUpdater(this.urlApiUpdater, body).subscribe(data => {
+      console.log(data)
+      this.urlRunUpdater = 'https://console.apify.com/organization/'+data.data.userId+'/actors/tasks/'+data.data.actorTaskId+'/runs/'+data.data.id+'#log'
+      //https://console.apify.com/organization/zciCZXekdyGwWp3Mh/actors/tasks/cvXsn291PivWvxcW8/runs/8X5gdjJWJKTUB5pgV#log
     })
   }
 

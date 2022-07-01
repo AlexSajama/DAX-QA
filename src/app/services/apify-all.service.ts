@@ -19,4 +19,8 @@ export class ApifyAllService {
     return this.http.post<any>('https://api.apify.com/v2/actor-tasks/cs_qa~cs-qa-validation/runs?token='+token, body)
   }
 
+  public runUpdater(urlApi: string, body: any) {
+    return this.http.post<any>(urlApi, body)
+  }
+
 }

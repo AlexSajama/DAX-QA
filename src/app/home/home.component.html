@@ -74,7 +74,10 @@
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">startUrls:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1"
-                    rows="3">{{this.productApiUrls}}</textarea>
+                    rows="3">{{productApiUrls}}</textarea>
+                  <input type="text" class="form-control" [(ngModel)]="urlApiUpdater" name="urlApiUpdater">
+                  <button class="btn btn-primary" (click)="runUpdater()">Api UPDATER</button>
+                  <a [href]="urlRunUpdater">{{urlRunUpdater}}</a>
                 </div>
               </div>
             </div>
